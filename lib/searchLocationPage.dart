@@ -1,7 +1,7 @@
-// screen2.dart
+// searchLocationPage.dart
 import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
-import 'weatherInfo.dart';
+import 'weatherInfoPage.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class _HomeScreenState extends State<SearchScreen> {
   }
 
   void _locateMe() {
-    // Implement your locate logic here
+    // Will work on later
     print('Locate me button pressed');
   }
 
@@ -31,7 +31,6 @@ class _HomeScreenState extends State<SearchScreen> {
   }
 
   void _onSearchChanged(String query) {
-    // Implement your search logic here
     print('Search query: $query');
   }
 
@@ -74,6 +73,7 @@ class _HomeScreenState extends State<SearchScreen> {
         title: Text(
           'Clima Nova',
           style: TextStyle(
+            fontFamily: 'Inder-Regular',
             fontWeight: FontWeight.bold,
             fontSize: 24,
             color: Colors.white,
@@ -81,6 +81,9 @@ class _HomeScreenState extends State<SearchScreen> {
         ),
         backgroundColor: Color(0xff313131),
         centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
       ),
       body: Stack(
         children: [
@@ -103,6 +106,7 @@ class _HomeScreenState extends State<SearchScreen> {
                   controller: _searchController,
                   decoration: InputDecoration(
                     hintText: 'Search location...',
+                    hintStyle: TextStyle(fontFamily: 'Inder-Regular'),
                     prefixIcon: Icon(Icons.search),
                     suffixIcon: _searchController.text.isNotEmpty
                         ? IconButton(
@@ -128,6 +132,7 @@ class _HomeScreenState extends State<SearchScreen> {
                     child: Text(
                       'Locate me',
                       style: TextStyle(
+                        fontFamily: 'Inder-Regular',
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                         color: Colors.white,
@@ -155,6 +160,7 @@ class _HomeScreenState extends State<SearchScreen> {
                 child: Text(
                   'Search',
                   style: TextStyle(
+                    fontFamily: 'Inder-Regular',
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                     color: Colors.white,

@@ -1,4 +1,4 @@
-import 'package:clima_nova_app1/screen2.dart';
+import 'package:clima_nova_app1/searchLocationPage.dart';
 import 'package:flutter/material.dart';
 
 class screen1 extends StatelessWidget {
@@ -14,7 +14,7 @@ class screen1 extends StatelessWidget {
             title: const Text(
               'Clima Nova',
               style:
-              TextStyle(color: Colors.white, fontFamily: 'Inder-Regular'),
+              TextStyle(color: Colors.white, fontFamily: 'Inder-Regular', fontWeight: FontWeight.bold, fontSize: 25),
             ),
             centerTitle: true,
             backgroundColor: const Color(0xFF303030),
