@@ -80,7 +80,7 @@ class screen1 extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => screen2()),
+                          MaterialPageRoute(builder: (context) => SearchScreen()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -112,7 +112,7 @@ class screen1 extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => screen2()),
+                          MaterialPageRoute(builder: (context) => SearchScreen()),
                         );
                       },
                       style: ElevatedButton.styleFrom(

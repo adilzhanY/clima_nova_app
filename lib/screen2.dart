@@ -1,130 +1,177 @@
-import 'package:clima_nova_app1/screen3.dart';
+// screen2.dart
 import 'package:flutter/material.dart';
+import 'package:weather/weather.dart';
+import 'weatherInfo.dart';
 
-class screen2 extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<SearchScreen> {
+  TextEditingController _searchController = TextEditingController();
+  final String _apiKey = '2a000bab71b10246891168049aa8f09b'; //API key
+  late WeatherFactory _weatherFactory;
+
+  @override
+  void initState() {
+    super.initState();
+    _weatherFactory = WeatherFactory(_apiKey);
+  }
+
+  void _locateMe() {
+    // Implement your locate logic here
+    print('Locate me button pressed');
+  }
+
+  void _clearSearch() {
+    setState(() {
+      _searchController.clear();
+    });
+  }
+
+  void _onSearchChanged(String query) {
+    // Implement your search logic here
+    print('Search query: $query');
+  }
+
+  Future<void> _fetchWeatherData(String city) async {
+    try {
+      Weather weather = await _weatherFactory.currentWeatherByCityName(city);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => WeatherScreen(
+            cityName: weather.areaName ?? 'Unknown',
+            countryName: weather.country ?? 'Unknown',
+            temperature: weather.temperature?.celsius ?? 0.0,
+            description: weather.weatherDescription ?? 'No description',
+          ),
+        ),
+      );
+    } catch (e) {
+      print('Failed to load weather data: $e');
+      // Show an error message
+    }
+  }
+
+  void _searchWeather() {
+    if (_searchController.text.isNotEmpty) {
+      _fetchWeatherData(_searchController.text);
+    }
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60.0),
-        child: AppBar(
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context); // Navigate back to the previous screen
-              },
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.all(0),
-                shape: const CircleBorder(),
-                backgroundColor: Color(0xFFD9D9D9),
-              ),
-              child: const Icon(Icons.arrow_back,
-                  color: Colors.black), // Button icon
-            ),
+      appBar: AppBar(
+        title: Text(
+          'Clima Nova',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+            color: Colors.white,
           ),
-          title: const Text(
-            'Clima Nova',
-            style: TextStyle(color: Colors.white, fontFamily: 'Inder-Regular'),
-          ),
-          centerTitle: true,
-          backgroundColor: const Color(0xFF303030),
         ),
+        backgroundColor: Color(0xff313131),
+        centerTitle: true,
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.black, Color(0xFF343434)],
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.black, Color(0xff383838)],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
           ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: 40), // Added space above the Search location bar
-            Container(
-              width: 328,
-              height: 57,
-              decoration: ShapeDecoration(
-                color: Color(0xFFD9D9D9),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-              // Placeholder for search bar content
-              child: Center(
-                child: Text(
-                  'Search location',
-                  style: TextStyle(
-                    color: Color(0xFF898989),
-                    fontSize: 25,
-                    fontFamily: 'Inder-Regular',
-                    fontWeight: FontWeight.w400,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 16.0),
+                TextField(
+                  controller: _searchController,
+                  decoration: InputDecoration(
+                    hintText: 'Search location...',
+                    prefixIcon: Icon(Icons.search),
+                    suffixIcon: _searchController.text.isNotEmpty
+                        ? IconButton(
+                      icon: Icon(Icons.clear),
+                      onPressed: _clearSearch,
+                    )
+                        : null,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide.none,
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[200],
                   ),
+                  onChanged: _onSearchChanged,
+                  onSubmitted: (_) => _searchWeather(),
                 ),
-              ),
-            ),
-            SizedBox(height: 20),
-            // Locate me button
-            ElevatedButton(
-              onPressed: () {
-                //functionality
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF363636),
-                padding: EdgeInsets.symmetric(horizontal: 35, vertical: 13),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-              child: Text(
-                'Locate me',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontFamily: 'Inder-Regular',
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-            // Continue button
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
+                SizedBox(height: 16.0),
+                Align(
+                  alignment: Alignment.centerRight,
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => screen3()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF676767),
-                      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
+                    onPressed: _locateMe,
+                    child: Text(
+                      'Locate me',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.white,
                       ),
                     ),
-                    child: Text(
-                      'Continue',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: 'Inder-Regular',
-                        fontWeight: FontWeight.w400,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xff373737),
+                      minimumSize: Size(190, 57),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
                       ),
+                      padding: EdgeInsets.symmetric(horizontal: 35, vertical: 13),
                     ),
                   ),
                 ),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: _searchWeather,
+                child: Text(
+                  'Search',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff686868),
+                  minimumSize: Size(156, 57),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
+                ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
