@@ -20,7 +20,7 @@ class _HomeScreenState extends State<SearchScreen> {
   }
 
   void _locateMe() {
-    // Implement your locate logic here
+    // Will work on later
     print('Locate me button pressed');
   }
 
@@ -31,7 +31,6 @@ class _HomeScreenState extends State<SearchScreen> {
   }
 
   void _onSearchChanged(String query) {
-    // Implement your search logic here
     print('Search query: $query');
   }
 

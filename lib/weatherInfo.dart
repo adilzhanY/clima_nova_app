@@ -1,6 +1,5 @@
 // weather_screen.dart
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class WeatherScreen extends StatelessWidget {
   final String cityName;
@@ -31,7 +30,7 @@ class WeatherScreen extends StatelessWidget {
             icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          // You can add more styles to the AppBar here
+          // Update Appbar later
           backgroundColor: Color(0xff313131),
         ),
         body: Stack(
