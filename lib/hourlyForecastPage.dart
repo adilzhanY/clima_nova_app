@@ -1,6 +1,6 @@
+
 import 'package:flutter/material.dart';
-
-
+import 'package:clima_nova_app1/hourlyForecastCard.dart';
 
 class hourlyForecastPage extends StatelessWidget {
   const hourlyForecastPage({super.key});
@@ -18,13 +18,33 @@ class hourlyForecastPage extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        centerTitle: true, // Center the title in the AppBar
+        centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        // Update Appbar later
         backgroundColor: Color(0xff313131),
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(16.0),
+        children: [
+          hourlyForecastCard(
+            time: '08:00 AM',
+            weatherIcon: Icons.wb_sunny,
+            temperature: '25°C',
+          ),
+          hourlyForecastCard(
+            time: '09:00 AM',
+            weatherIcon: Icons.wb_cloudy,
+            temperature: '22°C',
+          ),
+          hourlyForecastCard(
+            time: '10:00 AM',
+            weatherIcon: Icons.wb_sunny,
+            temperature: '26°C',
+          ),
+          // Add more HourlyForecastCard widgets here...
+        ],
       ),
     );
   }

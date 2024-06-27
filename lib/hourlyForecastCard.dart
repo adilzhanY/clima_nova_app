@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class HourlyForecastCard extends StatelessWidget {
+class hourlyForecastCard extends StatelessWidget {
   final String time;
   final IconData weatherIcon;
   final String temperature;
 
-  const HourlyForecastCard({
+  const hourlyForecastCard({
     Key? key,
     required this.time,
     required this.weatherIcon,
