@@ -45,6 +45,9 @@ class _HomeScreenState extends State<SearchScreen> {
             countryName: weather.country ?? 'Unknown',
             temperature: weather.temperature?.celsius ?? 0.0,
             description: weather.weatherDescription ?? 'No description',
+            windSpeed: weather.windSpeed ?? 0.0,
+            humidity: weather.humidity ?? 0.0,
+            iconCode: weather.weatherIcon ?? 'unknown',
           ),
         ),
       );
