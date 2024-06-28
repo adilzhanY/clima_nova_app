@@ -21,7 +21,7 @@ class WeatherScreen extends StatelessWidget {
     required this.iconCode,
   });
 
-  // THIS FUNCTION IS NOT DONE !!
+  // Weather Icon url's
   String _getWeatherImage(String iconCode) {
     if (iconCode.endsWith('d')) {
       // Daytime icons
@@ -29,12 +29,19 @@ class WeatherScreen extends StatelessWidget {
         return 'https://i.ibb.co/rb4rrJL/26.png';
       } else if (iconCode.contains('02d')) {
         return 'https://i.ibb.co/PZQXH8V/27.png';
-      } else if (iconCode.contains('10d') || iconCode.contains('09d') || iconCode.contains('11d')) {
+      } else if (iconCode.contains('10d')) {
         return 'https://i.ibb.co/kBd2NTS/39.png';
-      } else if (iconCode.contains('03d') || iconCode.contains('02d') || iconCode.contains('04d')) {
+      } else if(iconCode.contains('09d')){
+        return 'https://i.ibb.co/kBd2NTS/39.png';
+      }else if(iconCode.contains('11d')){
+        return 'https://i.ibb.co/kBd2NTS/39.png';
+      } else if (iconCode.contains('03d')) {
+        return 'https://i.ibb.co/PZQXH8V/27.png';
+      }else if(iconCode.contains('02d')){
+        return 'https://i.ibb.co/PZQXH8V/27.png';
+      } else if (iconCode.contains('04d')) {
         return 'https://i.ibb.co/PZQXH8V/27.png';
       }
-      return 'https://i.ibb.co/rb4rrJL/26.png';
     } else if (iconCode.endsWith('n')) {
       // Nighttime icon
       return 'https://i.ibb.co/1nxNGHL/10.png';
