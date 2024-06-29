@@ -175,9 +175,9 @@ class _HomeScreenState extends State<SearchScreen> {
                   onChanged: _onSearchChanged,
                   onSubmitted: (_) => _searchWeather(),
                 ),
-                SizedBox(height: 16.0),
+                SizedBox(height: 56.0),
                 Align(
-                  alignment: Alignment.centerRight,
+                  alignment: Alignment.center,
                   child: ElevatedButton(
                     onPressed: _locateMe,
                     child: Text(
@@ -200,32 +200,6 @@ class _HomeScreenState extends State<SearchScreen> {
                   ),
                 ),
               ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ElevatedButton(
-                onPressed: _searchWeather,
-                child: Text(
-                  'Search',
-                  style: TextStyle(
-                    fontFamily: 'Inder-Regular',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.white,
-                  ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff686868),
-                  minimumSize: Size(156, 57),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
-                ),
-              ),
             ),
           ),
         ],
