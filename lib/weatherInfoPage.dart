@@ -1,5 +1,6 @@
 // weather_screen.dart
 import 'package:clima_nova_app1/hourlyForecastPage.dart';
+import 'package:clima_nova_app1/dailyForecastPage.dart';
 import 'package:flutter/material.dart';
 
 class WeatherScreen extends StatelessWidget {
@@ -25,19 +26,19 @@ class WeatherScreen extends StatelessWidget {
   String _getWeatherImage(String iconCode) {
     if (iconCode.endsWith('d')) {
       // Daytime icons
-      if(iconCode.contains('01d')){
+      if (iconCode.contains('01d')) {
         return 'https://i.ibb.co/rb4rrJL/26.png';
       } else if (iconCode.contains('02d')) {
         return 'https://i.ibb.co/PZQXH8V/27.png';
       } else if (iconCode.contains('10d')) {
         return 'https://i.ibb.co/kBd2NTS/39.png';
-      } else if(iconCode.contains('09d')){
+      } else if (iconCode.contains('09d')) {
         return 'https://i.ibb.co/kBd2NTS/39.png';
-      }else if(iconCode.contains('11d')){
+      } else if (iconCode.contains('11d')) {
         return 'https://i.ibb.co/kBd2NTS/39.png';
       } else if (iconCode.contains('03d')) {
         return 'https://i.ibb.co/PZQXH8V/27.png';
-      }else if(iconCode.contains('02d')){
+      } else if (iconCode.contains('02d')) {
         return 'https://i.ibb.co/PZQXH8V/27.png';
       } else if (iconCode.contains('04d')) {
         return 'https://i.ibb.co/PZQXH8V/27.png';
@@ -98,35 +99,39 @@ class WeatherScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 8.0),
                 Center(
-                child: Column(
-                children: [
-                  Image.network(
-                    _getWeatherImage(iconCode),
-                    errorBuilder: (context, error, stackTrace) {
-                    return Icon(Icons.error, color: Colors.white);
-                    },
-                  ),
-                  Text(
-                    '${temperature.toStringAsFixed(1)}°C',
+                  child: Column(children: [
+                    SizedBox(
+                      width: 250,
+                      height: 250,
+                      child: Image.network(
+                        _getWeatherImage(iconCode),
+                        errorBuilder: (context, error, stackTrace) {
+                          return Icon(Icons.error, color: Colors.white);
+                        },
+                      ),
+                    ),
+                    Text(
+                      '${temperature.toStringAsFixed(0)}°C',
+                      style: TextStyle(
+                        fontFamily: 'Inder-Regular',
+                        fontSize: 70,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ]),
+                ),
+                Center(
+                  child: Text(
+                    description,
                     style: TextStyle(
                       fontFamily: 'Inder-Regular',
-                      fontSize: 70,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
                       color: Colors.white,
                     ),
                   ),
-                  ]
-                ),
                 ),
                 SizedBox(height: 8.0),
-                Text(
-                  description,
-                  style: TextStyle(
-                    fontFamily: 'Inder-Regular',
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
                 Text(
                   'Humidity: $humidity',
                   style: TextStyle(
@@ -145,59 +150,61 @@ class WeatherScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 16.0),
                 Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => hourlyForecastPage()),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF303030), // Background color
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
+                    alignment: Alignment.bottomLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => hourlyForecastPage()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Color(0xFF303030), // Background color
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                            child: Text(
+                              'See hourly forecast',
+                              style: TextStyle(
+                                fontFamily: 'Inder-Regular',
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                          child: Text(
-                            'See hourly forecast',
-                            style: TextStyle(
-                              fontFamily: 'Inder-Regular',
-                              color: Colors.white,
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => dailyForecastPage()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Color(0xFF303030), // Background color
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                            child: Text(
+                              'See daily forecast',
+                              style: TextStyle(
+                                fontFamily: 'Inder-Regular',
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => hourlyForecastPage()),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF303030), // Background color
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                          ),
-                          child: Text(
-                            'See daily forecast',
-                            style: TextStyle(
-                              fontFamily: 'Inder-Regular',
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                  )
-                ),
+                        ],
+                      ),
+                    )),
               ],
             ),
           ),
