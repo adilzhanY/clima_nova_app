@@ -1,6 +1,7 @@
 // searchLocationPage.dart
 import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
+import 'package:geolocator/geolocator.dart';
 import 'weatherInfoPage.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -19,9 +20,56 @@ class _HomeScreenState extends State<SearchScreen> {
     _weatherFactory = WeatherFactory(_apiKey);
   }
 
-  void _locateMe() {
-    // Will work on later
-    print('Locate me button pressed');
+
+  // Locate Me button with geolocator implemented
+  void _locateMe() async {
+    try {
+      // Check for location permissions
+      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        // Location services are disabled
+        return Future.error('Location services are disabled.');
+      }
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          // Permissions are denied
+          return Future.error('Location permissions are denied!');
+        }
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        // Permissions are denied forever
+        return Future.error('Location permissions are permanently denied!');
+      }
+
+      // Get the current position
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.low);
+
+      // Fetch weather data
+      Weather weather = await _weatherFactory.currentWeatherByLocation(
+          position.latitude, position.longitude);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => WeatherScreen(
+            cityName: weather.areaName ?? 'Unknown',
+            countryName: weather.country ?? 'Unknown',
+            temperature: weather.temperature?.celsius ?? 0.0,
+            description: weather.weatherDescription ?? 'No description',
+            windSpeed: weather.windSpeed ?? 0.0,
+            humidity: weather.humidity ?? 0.0,
+            iconCode: weather.weatherIcon ?? 'unknown',
+          ),
+        ),
+      );
+    } catch (e) {
+      print('Failed to get location or weather data: $e');
+      // Show an error message
+    }
   }
 
   void _clearSearch() {
