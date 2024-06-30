@@ -68,6 +68,23 @@ flutter:
     - images/see_current_weather_image.png
     - images/see_forecast_image.png
     - images/cloudy.png
+    - images/day_rain_thunder.png
+    - images/day_sleet.png
+    - images/day_snow.png
+    - images/day_snow_thunder.png
+    - images/fog.png
+    - images/mist.png
+    - images/night_rain.png
+    - images/night_rain_thunder.png
+    - images/night_sleet.png
+    - images/night_snow.png
+    - images/night_snow_thunder.png
+    - images/overcast.png
+    - images/rain.png
+    - images/rain_thunder.png
+    - images/clear-day.png
+    - images/day_partial_cloud.png
+    - images/night_clear.png
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

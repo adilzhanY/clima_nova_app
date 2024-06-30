@@ -30,28 +30,42 @@ class WeatherScreen extends StatelessWidget {
 
   // Weather Icon url's
   String _getWeatherImage(String iconCode) {
-    if (iconCode.endsWith('d')) {
-      // Daytime icons
-      if (iconCode.contains('01d')) {
-        return 'https://i.ibb.co/rb4rrJL/26.png';
-      } else if (iconCode.contains('02d')) {
-        return 'https://i.ibb.co/PZQXH8V/27.png';
-      } else if (iconCode.contains('10d')) {
-        return 'https://i.ibb.co/kBd2NTS/39.png';
-      } else if (iconCode.contains('09d')) {
-        return 'https://i.ibb.co/kBd2NTS/39.png';
-      } else if (iconCode.contains('11d')) {
-        return 'https://i.ibb.co/kBd2NTS/39.png';
-      } else if (iconCode.contains('03d')) {
-        return 'https://i.ibb.co/PZQXH8V/27.png';
-      } else if (iconCode.contains('02d')) {
-        return 'https://i.ibb.co/PZQXH8V/27.png';
-      } else if (iconCode.contains('04d')) {
-        return 'https://i.ibb.co/PZQXH8V/27.png';
-      }
-    } else if (iconCode.endsWith('n')) {
-      // Nighttime icon
-      return 'https://i.ibb.co/1nxNGHL/10.png';
+    if (iconCode.contains('01d')) {
+      return 'images/clear-day.png';
+    }else if(iconCode.contains('02d')){
+      return 'images/day_partial_png.png';
+    }else if(iconCode.contains('03d')){
+      return 'images/day_partial_cloudy.png';
+    }else if(iconCode.contains('04d')){
+      return 'images/cloudy.png';
+    }else if(iconCode.contains('09d')){
+      return 'images/rain.png';
+    }else if(iconCode.contains('10d')){
+      return 'images/rain.png';
+    }else if(iconCode.contains('11d')){
+      return 'images/rain_thunder.png';
+    }else if(iconCode.contains('13d')){
+      return 'images/snow.png';
+    }else if(iconCode.contains('50d')){
+      return 'images/mist.png';
+    }else if(iconCode.contains('01n')){
+      return 'images/night_clear.png';
+    } else if(iconCode.contains('02n')){
+      return 'images/night_clear.png';
+    }else if(iconCode.contains('03n')){
+      return 'images/cloudy.png';
+    }else if(iconCode.contains('04n')){
+      return 'images/cloudy.png';
+    }else if(iconCode.contains('09n')){
+      return 'images/night_rain.png';
+    }else if(iconCode.contains('10n')){
+      return 'images/night_rain.png';
+    }else if(iconCode.contains('11n')){
+      return 'images/night_rain_thunder.png';
+    }else if(iconCode.contains('13d')){
+      return 'images/night_snow.png';
+    }else if(iconCode.contains('50n')){
+      return 'images/mist.png';
     }
     return 'https://i.ibb.co/rb4rrJL/26.png'; // default
   }
@@ -109,7 +123,7 @@ class WeatherScreen extends StatelessWidget {
                     SizedBox(
                       width: 250,
                       height: 250,
-                      child: Image.network(
+                      child: Image.asset(
                         _getWeatherImage(iconCode),
                         errorBuilder: (context, error, stackTrace) {
                           return Icon(Icons.error, color: Colors.white);
