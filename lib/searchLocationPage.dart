@@ -51,7 +51,6 @@ class _HomeScreenState extends State<SearchScreen> {
       Weather weather = await _weatherFactory.currentWeatherByLocation(
           position.latitude, position.longitude);
 
-
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -63,8 +62,8 @@ class _HomeScreenState extends State<SearchScreen> {
             windSpeed: weather.windSpeed ?? 0.0,
             humidity: weather.humidity ?? 0.0,
             iconCode: weather.weatherIcon ?? 'unknown',
-            tempMax: weather.tempMax?.celsius ?? 0.0,
-            tempMin: weather.tempMin?.celsius ?? 0.0,
+            //tempMax: weather.tempMax?.celsius ?? 0.0,
+              //tempMin: weather.tempMax?.celsius ?? 0.0,
           ),
         ),
       );
@@ -98,8 +97,8 @@ class _HomeScreenState extends State<SearchScreen> {
             windSpeed: weather.windSpeed ?? 0.0,
             humidity: weather.humidity ?? 0.0,
             iconCode: weather.weatherIcon ?? 'unknown',
-            tempMax: weather.tempMax?.celsius ?? 0.0,
-            tempMin: weather.tempMin?.celsius ?? 0.0,
+            //tempMax: weather.tempMax?.celsius ?? 0.0,
+            //tempMin: weather.tempMax?.celsius ?? 0.0,
           ),
         ),
       );

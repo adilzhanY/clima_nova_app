@@ -1,5 +1,4 @@
 // weather_screen.dart
-import 'package:clima_nova_app1/hourlyForecastPage.dart';
 import 'package:clima_nova_app1/dailyForecastPage.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +10,9 @@ class WeatherScreen extends StatelessWidget {
   final double windSpeed;
   final double humidity;
   final String iconCode;
-  final double tempMax;
-  final double tempMin;
+  //final double tempMax;
+  //final double tempMin;
+
 
   WeatherScreen({
     required this.cityName,
@@ -22,8 +22,8 @@ class WeatherScreen extends StatelessWidget {
     required this.windSpeed,
     required this.humidity,
     required this.iconCode,
-    required this.tempMax,
-    required this.tempMin,
+    //required this.tempMax,
+    //required this.tempMin,
   });
 
   // Weather Icon url's
@@ -127,15 +127,6 @@ class WeatherScreen extends StatelessWidget {
                 ),
                 Center(
                   child: Text(
-                    'H: ${tempMax.toStringAsFixed(0)} L: ${tempMin.toStringAsFixed(0)}',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Text(
                     description,
                     style: TextStyle(
                       fontFamily: 'Inder-Regular',
@@ -145,14 +136,30 @@ class WeatherScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 8.0),
-                Text(
-                  'Humidity: $humidity',
-                  style: TextStyle(
-                    fontFamily: 'Inder-Regular',
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
+                //Text(
+                //                   'H: ${tempMax.toStringAsFixed(0)}',
+                //                   style: TextStyle(
+                //                     fontFamily: 'Inder-Regular',
+                //                     fontSize: 20,
+                //                     color: Colors.white,
+                //                   ),
+                //                 ),
+                //Text(
+                //                   'L: ${tempMin.toStringAsFixed(0)}',
+                //                   style: TextStyle(
+                //                     fontFamily: 'Inder-Regular',
+                //                     fontSize: 20,
+                //                     color: Colors.white,
+                //                   ),
+                //                 ),
+                //                 Text(
+                //                   'Humidity: $humidity',
+                //                   style: TextStyle(
+                //                     fontFamily: 'Inder-Regular',
+                //                     fontSize: 20,
+                //                     color: Colors.white,
+                //                   ),
+                //                 ),
                 Text(
                   'Wind Speed: $windSpeed',
                   style: TextStyle(
@@ -169,29 +176,6 @@ class WeatherScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => hourlyForecastPage()),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                              Color(0xFF303030), // Background color
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                            ),
-                            child: Text(
-                              'See hourly forecast',
-                              style: TextStyle(
-                                fontFamily: 'Inder-Regular',
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
                           ElevatedButton(
                             onPressed: () {
                               Navigator.push(

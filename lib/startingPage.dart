@@ -1,8 +1,8 @@
 import 'package:clima_nova_app1/searchLocationPage.dart';
 import 'package:flutter/material.dart';
 
-class screen1 extends StatelessWidget {
-  const screen1({super.key});
+class startingPage extends StatelessWidget {
+  const startingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
