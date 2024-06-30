@@ -11,6 +11,8 @@ class WeatherScreen extends StatelessWidget {
   final double windSpeed;
   final double humidity;
   final String iconCode;
+  final double tempMax;
+  final double tempMin;
 
   WeatherScreen({
     required this.cityName,
@@ -20,6 +22,8 @@ class WeatherScreen extends StatelessWidget {
     required this.windSpeed,
     required this.humidity,
     required this.iconCode,
+    required this.tempMax,
+    required this.tempMin,
   });
 
   // Weather Icon url's
@@ -120,6 +124,15 @@ class WeatherScreen extends StatelessWidget {
                       ),
                     ),
                   ]),
+                ),
+                Center(
+                  child: Text(
+                    'H: ${tempMax.toStringAsFixed(0)} L: ${tempMin.toStringAsFixed(0)}',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
                 Center(
                   child: Text(
