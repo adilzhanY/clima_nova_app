@@ -10,8 +10,9 @@ class WeatherScreen extends StatelessWidget {
   final double windSpeed;
   final double humidity;
   final String iconCode;
-  //final double tempMax;
-  //final double tempMin;
+  final double tempMax;
+  final double tempMin;
+  final double pressure;
 
 
   WeatherScreen({
@@ -22,8 +23,9 @@ class WeatherScreen extends StatelessWidget {
     required this.windSpeed,
     required this.humidity,
     required this.iconCode,
-    //required this.tempMax,
-    //required this.tempMin,
+    required this.tempMax,
+    required this.tempMin,
+    required this.pressure,
   });
 
   // Weather Icon url's
@@ -127,6 +129,16 @@ class WeatherScreen extends StatelessWidget {
                 ),
                 Center(
                   child: Text(
+                    'Max: ${tempMax.toStringAsFixed(0)}°C Min: ${tempMin.toStringAsFixed(0)}°C',
+                    style: TextStyle(
+                      fontFamily: 'Inder-Regular',
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Text(
                     description,
                     style: TextStyle(
                       fontFamily: 'Inder-Regular',
@@ -136,32 +148,26 @@ class WeatherScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 8.0),
-                //Text(
-                //                   'H: ${tempMax.toStringAsFixed(0)}',
-                //                   style: TextStyle(
-                //                     fontFamily: 'Inder-Regular',
-                //                     fontSize: 20,
-                //                     color: Colors.white,
-                //                   ),
-                //                 ),
-                //Text(
-                //                   'L: ${tempMin.toStringAsFixed(0)}',
-                //                   style: TextStyle(
-                //                     fontFamily: 'Inder-Regular',
-                //                     fontSize: 20,
-                //                     color: Colors.white,
-                //                   ),
-                //                 ),
-                //                 Text(
-                //                   'Humidity: $humidity',
-                //                   style: TextStyle(
-                //                     fontFamily: 'Inder-Regular',
-                //                     fontSize: 20,
-                //                     color: Colors.white,
-                //                   ),
-                //                 ),
                 Text(
-                  'Wind Speed: $windSpeed',
+                  'Wind Speed: $windSpeed m/s',
+                  style: TextStyle(
+                    fontFamily: 'Inder-Regular',
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(height: 8.0),
+                Text(
+                  'Humidity: $humidity %',
+                  style: TextStyle(
+                    fontFamily: 'Inder-Regular',
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(height: 8.0),
+                Text(
+                  'Pressure: $pressure hPa',
                   style: TextStyle(
                     fontFamily: 'Inder-Regular',
                     fontSize: 20,

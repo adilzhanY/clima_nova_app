@@ -62,8 +62,9 @@ class _HomeScreenState extends State<SearchScreen> {
             windSpeed: weather.windSpeed ?? 0.0,
             humidity: weather.humidity ?? 0.0,
             iconCode: weather.weatherIcon ?? 'unknown',
-            //tempMax: weather.tempMax?.celsius ?? 0.0,
-              //tempMin: weather.tempMax?.celsius ?? 0.0,
+            tempMax: weather.tempMax?.celsius ?? 0.0,
+            tempMin: weather.tempMax?.celsius ?? 0.0,
+            pressure: weather.pressure ?? 0.0,
           ),
         ),
       );
@@ -97,8 +98,9 @@ class _HomeScreenState extends State<SearchScreen> {
             windSpeed: weather.windSpeed ?? 0.0,
             humidity: weather.humidity ?? 0.0,
             iconCode: weather.weatherIcon ?? 'unknown',
-            //tempMax: weather.tempMax?.celsius ?? 0.0,
-            //tempMin: weather.tempMax?.celsius ?? 0.0,
+            tempMax: weather.tempMax?.celsius ?? 0.0,
+            tempMin: weather.tempMax?.celsius ?? 0.0,
+            pressure: weather.pressure ?? 0.0,
           ),
         ),
       );
