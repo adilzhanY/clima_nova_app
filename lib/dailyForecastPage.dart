@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:clima_nova_app1/dailyForecastCard.dart';
-import 'package:weather/weather.dart';
-import 'weatherService.dart';
+import 'package:intl/intl.dart';
+import 'package:weather/weather.dart'; // Make sure to import the correct weather package
+import 'weatherService.dart'; // Import your WeatherService implementation
+import 'dailyForecastCard.dart'; // Import your DailyForecastCard widget
 
 class dailyForecastPage extends StatefulWidget {
   final String cityName;
@@ -21,7 +22,7 @@ class _DailyForecastPageState extends State<dailyForecastPage> {
   void initState() {
     super.initState();
     _weatherService = WeatherService('2a000bab71b10246891168049aa8f09b');
-    _fetchWeather(widget.cityName); // Fetch weather for the provided city
+    _fetchWeather(widget.cityName); // Fetch weather for the provided city on init
   }
 
   Future<void> _fetchWeather(String cityName) async {
@@ -29,8 +30,7 @@ class _DailyForecastPageState extends State<dailyForecastPage> {
       _isLoading = true; // Start loading indicator
     });
     try {
-      List<Weather> forecast =
-      await _weatherService.getFiveDayForecast(cityName);
+      List<Weather> forecast = await _weatherService.getFiveDayForecast(cityName);
       setState(() {
         _forecast = forecast;
         _isLoading = false; // Stop loading indicator
@@ -40,6 +40,7 @@ class _DailyForecastPageState extends State<dailyForecastPage> {
         _isLoading = false; // Stop loading indicator on error
       });
       print('Error fetching weather: $e');
+      // Optionally, show a snackbar or message to the user about the error
     }
   }
 
@@ -64,8 +65,6 @@ class _DailyForecastPageState extends State<dailyForecastPage> {
         ),
       ),
       body: Container(
-        width: double.infinity,
-        height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -75,17 +74,22 @@ class _DailyForecastPageState extends State<dailyForecastPage> {
         ),
         child: _isLoading
             ? Center(child: CircularProgressIndicator())
+            : _forecast.isEmpty
+            ? Center(child: Text('No forecast available'))
             : ListView.builder(
+          key: Key('weather_list'), // Provide a key for list optimization
           padding: EdgeInsets.all(16.0),
           itemCount: _forecast.length,
           itemBuilder: (context, index) {
             Weather weather = _forecast[index];
-            return DailyForecastCard(
-              day: weather.date.toString().split(' ')[0],
+            return dailyForecastCard(
+              day: DateFormat('EEEE').format(weather.date!),
+                date: DateFormat('dd.MM.yyyy').format(weather.date!),
+              time: DateFormat('HH:mm').format(weather.date!),
               temperature:
               '${weather.temperature!.celsius!.toStringAsFixed(1)}°C',
-              avg_humidity: weather.humidity!.toString(),
-              avg_wind_speed: weather.windSpeed!.toString(),
+              humidity: weather.humidity!.toString(),
+              wind_speed: weather.windSpeed!.toString(),
             );
           },
         ),

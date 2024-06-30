@@ -64,73 +64,35 @@ class startingPage extends StatelessWidget {
               const SizedBox(height: 24), // Spacer between text and buttons
 
               // Row containing buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // See current weather button
-                  Container(
-                    width: 156,
-                    height: 66,
-                    margin: const EdgeInsets.only(right: 8),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF303030),
+              Container(
+                width: 156,
+                height: 66,
+                margin: const EdgeInsets.only(right: 8),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF303030),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SearchScreen()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF303030),
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SearchScreen()),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF303030),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      child: const Text('See current weather',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontFamily: 'Inder-Regular',
-                              fontWeight: FontWeight.w400,
-                              height: 0)),
-                    ),
                   ),
-
-                  // See forecast button
-                  Container(
-                    width: 156,
-                    height: 66,
-                    margin: const EdgeInsets.only(left: 8),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF303030),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SearchScreen()),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF303030),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      child: const Text('See forecast',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontFamily: 'Inder-Regular',
-                              fontWeight: FontWeight.w400,
-                              height: 0)),
-                    ),
-                  ),
-                ],
+                  child: const Text('See weather',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontFamily: 'Inder-Regular',
+                          fontWeight: FontWeight.w400,
+                          height: 0)),
+                ),
               ),
             ],
           ),
