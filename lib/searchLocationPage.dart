@@ -20,7 +20,6 @@ class _HomeScreenState extends State<SearchScreen> {
     _weatherFactory = WeatherFactory(_apiKey);
   }
 
-
   // Locate Me button with geolocator implemented
   void _locateMe() async {
     try {
@@ -161,9 +160,9 @@ class _HomeScreenState extends State<SearchScreen> {
                     prefixIcon: Icon(Icons.search),
                     suffixIcon: _searchController.text.isNotEmpty
                         ? IconButton(
-                      icon: Icon(Icons.clear),
-                      onPressed: _clearSearch,
-                    )
+                            icon: Icon(Icons.clear),
+                            onPressed: _clearSearch,
+                          )
                         : null,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
@@ -195,7 +194,8 @@ class _HomeScreenState extends State<SearchScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 35, vertical: 13),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 35, vertical: 13),
                     ),
                   ),
                 ),

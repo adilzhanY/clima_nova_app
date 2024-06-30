@@ -166,7 +166,7 @@ class WeatherScreen extends StatelessWidget {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  Color(0xFF303030), // Background color
+                              Color(0xFF303030), // Background color
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16),
                               ),
@@ -184,12 +184,12 @@ class WeatherScreen extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => dailyForecastPage()),
+                                    builder: (context) => dailyForecastPage(cityName: cityName)),
                               );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  Color(0xFF303030), // Background color
+                              Color(0xFF303030), // Background color
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16),
                               ),

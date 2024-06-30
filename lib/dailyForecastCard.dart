@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class dailyForecastCard extends StatelessWidget {
+class DailyForecastCard extends StatelessWidget {
   final String day;
   final String temperature;
   final String avg_humidity;
   final String avg_wind_speed;
 
-  const dailyForecastCard({
+  const DailyForecastCard({
     Key? key,
     required this.day,
     required this.temperature,
