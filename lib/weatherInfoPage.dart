@@ -35,7 +35,7 @@ class WeatherScreen extends StatelessWidget {
     }else if(iconCode.contains('02d')){
       return 'images/day_partial_png.png';
     }else if(iconCode.contains('03d')){
-      return 'images/day_partial_cloudy.png';
+      return 'images/day_partial_cloud.png';
     }else if(iconCode.contains('04d')){
       return 'images/cloudy.png';
     }else if(iconCode.contains('09d')){
